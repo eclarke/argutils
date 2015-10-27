@@ -1,0 +1,15 @@
+__meta__:
+  __desc__: Section description
+arg1:
+  __desc__: Argument description/help
+  default: default_value
+arg2:
+  __desc__: Second argument description
+  default: 1
+  type: int
+arg3:
+  __desc__: Third argument description
+  default: 1
+  type: int
+  __exclude__: True
+

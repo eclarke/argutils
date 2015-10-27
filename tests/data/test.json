@@ -1,0 +1,20 @@
+{
+  "__meta__": {
+    "__desc__": "Section description"
+  },
+  "arg1": {
+    "default": "default_value",
+    "__desc__": "Argument description/help"
+  },
+  "arg2": {
+    "default": 1,
+    "type": "int",
+    "__desc__": "Second argument description"
+  },
+  "arg3": {
+    "default": 1,
+    "__exclude__": true,
+    "type": "int",
+    "__desc__": "Third argument description"
+  }
+}

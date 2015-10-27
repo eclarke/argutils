@@ -12,6 +12,7 @@ setup(
     url='https://github.com/eclarke/argutils',
     description='Utilities to convert argument lists to parsers and config files',
     install_requires=[
-    	'six'
+    	'six',
+    	'yaml'
     ]
 )

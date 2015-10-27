@@ -1,5 +1,7 @@
 """Functions to export argument lists as config files or ArgumentParsers."""
 import six
+import warnings
+from collections import OrderedDict
 
 from argutils import (
     format_comment, META_KEY, DESC_KEY, EXCLUDE_FLAG
@@ -11,6 +13,9 @@ def to_config(header, argsdict):
     :param argsdict: a dictionary of arguments as provided by `read_serialized`
     :returns: a string representation of the config file, which can be written to a file
     """ 
+
+    if not isinstance(argsdict, OrderedDict):
+        warnings.warn("Arguments dictionary is unordered, output may be in unexpected order.")
 
     CFG_LINE_STR = "{key} = {value}\n"
     CFG_SECTION_STR = "[{header}]\n"
