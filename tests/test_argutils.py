@@ -67,3 +67,15 @@ arg1 = default_value
 # Second argument description
 arg2 = 1
 """
+
+def test_unordered_warning(argsdict):
+	"""Passing unordered argument dictionaries should raise an error."""
+	unordered_args = dict(argsdict)
+	with pytest.warns(UserWarning):
+		argutils.export.to_config(header='Section', argsdict=unordered_args)
+
+def test_blank_comment():
+	blank = ""
+	assert argutils.format_comment(blank) == ""
+	assert argutils.format_comment(None) == ""
+	
