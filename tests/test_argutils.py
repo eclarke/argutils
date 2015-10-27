@@ -70,8 +70,6 @@ arg2 = 1
 def test_unordered_warning(argsdict):
     """Passing unordered argument dictionaries should raise an error."""
     unordered_args = dict(argsdict)
-    if pytest.__version__ != "2.8.2":
-        assert False
     with pytest.warns(UserWarning):
         argutils.export.to_config(header='Section', argsdict=unordered_args)
 
