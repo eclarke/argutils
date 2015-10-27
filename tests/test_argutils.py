@@ -1,4 +1,5 @@
 import pytest
+from collections import OrderedDict
 import argutils
 import argutils.export
 from argutils import (
@@ -7,7 +8,7 @@ from argutils import (
 
 @pytest.fixture
 def argsdict():
-	argsdict = {
+	argsdict = OrderedDict({
 		META_KEY: {
 			DESC_KEY: 'Section description'
 		},
@@ -27,7 +28,7 @@ def argsdict():
 			'type': int,
 			EXCLUDE_FLAG: True
 		}
-	}
+	})
 	return argsdict
 
 def test_to_config(argsdict):
