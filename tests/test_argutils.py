@@ -29,10 +29,11 @@ def argsdict():
 
 def test_to_config(argsdict):
 	cfg_string = argutils.to_config(header='Section', argsdict=argsdict)
-	assert cfg_string == """## Section description
+	assert cfg_string == """
+## Section description
 [Section]
 # Argument description/help
 arg1 = default_value
 # Second argument description
 arg2 = 1
-"""
+""".strip()
