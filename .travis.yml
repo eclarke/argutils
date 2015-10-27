@@ -10,7 +10,8 @@ python:
 # command to install dependencies
 install: "pip install ."
 before_script:
-  - pip install pytest python-coveralls
+  - pip install pytest>=2.8
+  - pip install python-coveralls
 # command to run tests
 script: py.test
 after_success:
