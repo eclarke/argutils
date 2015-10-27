@@ -1,6 +1,10 @@
 """Functions to export argument lists as config files or ArgumentParsers."""
 
-from argutils import (META_KEY, DESC_KEY, EXCLUDE_FLAG)
+from argutils import format_comment
+
+from argutils import (
+    META_KEY, DESC_KEY, EXCLUDE_FLAG
+)
 
 def to_config(header, argsdict):
     """Create an INI-style config file from a given dictionary of arguments.
