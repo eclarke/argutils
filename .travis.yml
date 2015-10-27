@@ -6,12 +6,11 @@ python:
   - "3.4"
   - "3.5"
   - "3.5-dev" # 3.5 development branch
-  - "nightly" # currently points to 3.6-dev
 # command to install dependencies
 install: "pip install -r requirements.txt ."
 before_script:
   - pip install python-coveralls pytest-cov
 # command to run tests
-script: py.test --cov=argutils tests
+script: cd tests; py.test --cov=argutils
 after_success:
   - coveralls
