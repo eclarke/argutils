@@ -10,5 +10,8 @@ setup(
     author='Erik Clarke',
     author_email='ecl@mail.med.upenn.edu',
     url='https://github.com/eclarke/argutils',
-    description='Utilities to convert argument lists to parsers and config files'
+    description='Utilities to convert argument lists to parsers and config files',
+    install_requires=[
+    	'six'
+    ]
 )

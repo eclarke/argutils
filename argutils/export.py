@@ -1,9 +1,8 @@
 """Functions to export argument lists as config files or ArgumentParsers."""
-
-from argutils import format_comment
+import six
 
 from argutils import (
-    META_KEY, DESC_KEY, EXCLUDE_FLAG
+    format_comment, META_KEY, DESC_KEY, EXCLUDE_FLAG
 )
 
 def to_config(header, argsdict):
@@ -25,7 +24,7 @@ def to_config(header, argsdict):
 
     out += CFG_SECTION_STR.format(header=header)
 
-    for argname, argvals in argsdict.iteritems():
+    for argname, argvals in six.iteritems(argsdict):
         # Skip the metadata section (since we handled already)
         if argname == META_KEY:
             continue
