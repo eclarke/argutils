@@ -3,16 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to argutils's documentation!
-====================================
+argutils - functions for creating matched config files and argument parsers
+===========================================================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-.. automodule:: argutils
-    :members:
+   argutils
 
 
 Indices and tables
