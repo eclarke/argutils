@@ -8,7 +8,7 @@ python:
   - "3.5-dev" # 3.5 development branch
   - "nightly" # currently points to 3.6-dev
 # command to install dependencies
-install: "pip install --editable -r requirements.txt ."
+install: "pip install -r requirements.txt ."
 before_script:
   - pip install python-coveralls pytest-cov
 # command to run tests
