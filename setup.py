@@ -1,10 +1,11 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("VERSION") as version_file:
     version = version_file.read().strip()
 
 setup(
     name="argutils",
+    packages=find_packages(),
     version=version,
     author='Erik Clarke',
     author_email='ecl@mail.med.upenn.edu',
