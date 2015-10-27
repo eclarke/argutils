@@ -28,7 +28,7 @@ def argsdict():
 	return argsdict
 
 def test_to_config(argsdict):
-	cfg_string = argutils.to_config(header='Section', argsdict=argsdict)
+	cfg_string = argutils.export.to_config(header='Section', argsdict=argsdict)
 	assert cfg_string == """
 ## Section description
 [Section]
