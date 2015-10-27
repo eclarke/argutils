@@ -1,0 +1,6 @@
+docs/build/*
+argutils.egg-info
+.cache
+.DS_Store
+*.pyc
+\~.*
