@@ -1,4 +1,4 @@
-docs/build/*
+doc/_build
 argutils.egg-info
 .cache
 .DS_Store
