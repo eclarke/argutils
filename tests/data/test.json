@@ -11,10 +11,32 @@
     "type": "int",
     "__desc__": "Second argument description"
   },
-  "arg3": {
+  "hidden": {
     "default": 1,
     "__exclude__": true,
     "type": "int",
-    "__desc__": "Third argument description"
+    "__desc__": "This arg does not appear in the config file"
+  },
+  "output": {
+    "default": "stdout",
+    "__desc__": "Testing other filetypes/options",
+    "type": "File-w",
+    "argtype": "arg"
+  },
+  "flag": {
+    "argtype": "flag",
+    "__desc__": "This is a flag"
+  },
+  "choices": {
+    "default": 1,
+    "choices": "1, 2, 3",
+    "type": "int"
+  },
+  "stdin": {
+    "default": "stdin",
+    "__exclude__": true
+  },
+  "nodefault": {
+    "__exclude__": true
   }
 }

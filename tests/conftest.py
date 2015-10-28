@@ -21,25 +21,43 @@ def yaml_file(testdata_fp):
 def argsdict():
     d = OrderedDict()
     d[META_KEY] = {DESC_KEY: "Section description"}
-    d['arg1'] = {
-        'default': 'default_value',
-        DESC_KEY: 'Argument description/help'
-    }
-    d['arg2'] = {
-        'default': 1,
-        DESC_KEY: 'Second argument description',
-        'type': 'int'
-    }
-    d['hidden'] = {
-        'default': 1,
-        DESC_KEY: 'This arg does not appear in the config file',
-        'type': 'int',
-        EXCLUDE_FLAG: True
-    },
-    d['output'] = {
-        'default': 'stdout',
-        DESC_KEY: 'Testing other filetypes/options',
-        'type': 'File-w',
-        
-    }
+    d['arg1'] = OrderedDict([
+        ('default', 'default_value'),
+        (DESC_KEY, 'Argument description/help')
+    ])
+    d['arg2'] = OrderedDict([
+        ('default', 1),
+        ('type', 'int'),
+        (DESC_KEY, 'Second argument description')
+    ])
+    d['hidden'] = OrderedDict([
+        ('default', 1),
+        (EXCLUDE_FLAG, True),
+        ('type', 'int'),
+        (DESC_KEY, 'This arg does not appear in the config file')
+    ])
+    d['output'] = OrderedDict([
+        ('default', 'stdout'),
+        (DESC_KEY, 'Testing other filetypes/options'),
+        ('type', 'File-w'),
+        ('argtype', 'arg')
+    ])
+    d['flag'] = OrderedDict([
+        ('argtype',  'flag'),
+        (DESC_KEY, 'This is a flag')
+    ])
+    d['choices'] = OrderedDict([
+        ('default', 1),
+        ('choices', "1, 2, 3"),
+        ('type', 'int')
+    ])
+    d['stdin'] = OrderedDict([
+        ('default', 'stdin'),
+        (EXCLUDE_FLAG, True)
+    ])
+    d['filein'] = OrderedDict([
+        ('type', 'File-r'),
+        (EXCLUDE_FLAG, True)
+    ])
+
     return d

@@ -2,6 +2,7 @@
 from collections import OrderedDict
 import argparse
 import sys
+import __builtin__
 import six
 import warnings
 
@@ -99,7 +100,7 @@ def _add_argument(argname, argvals, parser):
 
     nargs = argvals.get('nargs', None)
     try:
-        nargs = int(nargs)
+        nargs = int(nargs) if nargs else nargs
     except ValueError:
         nargs = nargs if nargs in ['+', '?', '*', argparse.REMAINDER] else None
 
@@ -174,7 +175,7 @@ def _parse_type(typestr, argname):
         return argparse.FileType('w')
     elif typestr:
         try:
-            return getattr(__builtins__, typestr)
+            return getattr(__builtin__, typestr)
         except AttributeError:
             raise ValueError(
                 "Invalid type specified for `{}`: {}"
