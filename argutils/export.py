@@ -78,7 +78,7 @@ def to_argparser(cmd_name, argsdict, desc=None):
         cmd_desc = desc
     parser = argparse.ArgumentParser(prog=cmd_name, description=cmd_desc)
 
-    for argname, argvals in argsdict.iteritems():
+    for argname, argvals in six.iteritems(argsdict):
         if argname == META_KEY:
             continue
         parser = _add_argument(argname, argvals, parser) 
