@@ -9,10 +9,11 @@ argutils - functions for creating matched config files and argument parsers
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    argutils
 
+Release |release|
 
 Indices and tables
 ==================

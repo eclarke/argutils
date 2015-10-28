@@ -3,6 +3,8 @@ import textwrap
 META_KEY = "__meta__"
 DESC_KEY = "__desc__"
 EXCLUDE_FLAG = "__exclude__"
+FILE_W = "File-w"
+FILE_R = "File-r"
 
 def format_comment(text, width=72, quote="# "):
     """Line-wraps and pads text to write as a comment.

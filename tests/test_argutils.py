@@ -43,22 +43,22 @@ def argsdict():
 
 
 def test_import_from_json(json_file, argsdict):
+    """Should be able to produce an OrderedDict from a JSON file."""
     with open(json_file) as infile:
-        s = infile.read()
-        result = argutils.read.from_json(s)
+        result = argutils.read.from_json(infile.read())
         assert isinstance(result, OrderedDict)
         assert result == argsdict
 
 def test_import_from_yaml(yaml_file, argsdict):
+    """Should be able to produce an OrderedDict from a YAML file."""
     with open(yaml_file) as infile:
-        s = infile.read()
-        result = argutils.read.from_yaml(s)
+        result = argutils.read.from_yaml(infile.read())
         assert isinstance(result, OrderedDict)
         assert result == argsdict
 
 
 def test_to_config(argsdict):
-    cfg_string = argutils.export.to_config(header='Section', argsdict=argsdict)
+    cfg_string = argutils.export.to_config(cmd_name='Section', argsdict=argsdict)
     assert cfg_string == """## Section description
 [Section]
 # Argument description/help
@@ -71,7 +71,7 @@ def test_unordered_warning(argsdict):
     """Passing unordered argument dictionaries should raise an error."""
     unordered_args = dict(argsdict)
     with pytest.warns(UserWarning):
-        argutils.export.to_config(header='Section', argsdict=unordered_args)
+        argutils.export.to_config(cmd_name='Section', argsdict=unordered_args)
 
 def test_blank_comment():
     blank = ""
