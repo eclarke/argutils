@@ -2,7 +2,10 @@
 from collections import OrderedDict
 import argparse
 import sys
-import __builtin__
+try:
+    import __builtin__ as builtins
+except ImportError:
+    import builtins
 import six
 import warnings
 
@@ -175,7 +178,7 @@ def _parse_type(typestr, argname):
         return argparse.FileType('w')
     elif typestr:
         try:
-            return getattr(__builtin__, typestr)
+            return getattr(builtins, typestr)
         except AttributeError:
             raise ValueError(
                 "Invalid type specified for `{}`: {}"
