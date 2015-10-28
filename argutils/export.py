@@ -23,7 +23,7 @@ def to_config(cmd_name, argsdict, desc=None):
     """ 
 
     if not isinstance(argsdict, OrderedDict):
-        warnings.warn(
+        raise ValueError(
             "Arguments dictionary is unordered: output order will be random."
         )
 

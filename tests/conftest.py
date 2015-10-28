@@ -51,13 +51,5 @@ def argsdict():
         ('choices', "1, 2, 3"),
         ('type', 'int')
     ])
-    d['stdin'] = OrderedDict([
-        ('default', 'stdin'),
-        (EXCLUDE_FLAG, True)
-    ])
-    d['filein'] = OrderedDict([
-        ('type', 'File-r'),
-        (EXCLUDE_FLAG, True)
-    ])
 
     return d

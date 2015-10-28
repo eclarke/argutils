@@ -24,10 +24,5 @@ choices:
   default: 1
   choices: "1, 2, 3"
   type: int
-stdin:
-  default: stdin
-  __exclude__: True
-nodefault:
-  __exclude__: True
 
 

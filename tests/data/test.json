@@ -31,12 +31,5 @@
     "default": 1,
     "choices": "1, 2, 3",
     "type": "int"
-  },
-  "stdin": {
-    "default": "stdin",
-    "__exclude__": true
-  },
-  "nodefault": {
-    "__exclude__": true
   }
 }
