@@ -118,6 +118,5 @@ def test_bad_typestr():
 def test_unordered_warning(argsdict):
     """Passing unordered argsdicts to to_config should raise an error."""
     unordered_args = dict(argsdict)
-    print isinstance(unordered_args, OrderedDict)
     with pytest.raises(ValueError):
         export.to_config(cmd_name='Section', argsdict=unordered_args)
