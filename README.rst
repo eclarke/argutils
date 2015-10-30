@@ -12,7 +12,17 @@ argutils - functions for creating matched config files and argument parsers
 
 `argutils` provides a set of functions for quickly building command-line programs with matching config files. In particular, instead of separately building an ArgumentParser and ConfigParser, `argutils` lets the user build an interface from a JSON or YAML file, and then uses that to build both an argument parser and matching config file.
 
-Here's a working example. We have a toy program that takes three arguments: a message to print, the number of times to print it, and where to print it. We have two files, an argument spec file we'll call `example_spec.yml`, and our program, `example.py`.
+Installation
+------------
+
+.. code-block:: bash
+
+  $ pip install argutils
+  
+Usage example
+--------------
+
+Let's say we have a toy program that takes three arguments: a message to print, the number of times to print it, and where to print it. We have two files, an argument spec file we'll call `example_spec.yml`, and our program, `example.py`.
 
 In `example_spec.yml`:
 
