@@ -8,7 +8,8 @@ argutils - functions for creating matched config files and argument parsers
 .. image:: https://readthedocs.org/projects/argutils/badge/?version=latest
   :target: http://argutils.readthedocs.org/en/latest/?badge=latest
   :alt: Documentation Status
-
+.. image:: https://badge.fury.io/py/argutils.svg
+    :target: https://badge.fury.io/py/argutils
 
 `argutils` provides a set of functions for quickly building command-line programs with matching config files. In particular, instead of separately building an ArgumentParser and ConfigParser, `argutils` lets the user build an interface from a JSON or YAML file, and then uses that to build both an argument parser and matching config file.
 
