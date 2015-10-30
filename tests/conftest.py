@@ -53,3 +53,20 @@ def argsdict():
     ])
 
     return d
+
+@pytest.fixture
+def argsdict_cfg_str():
+    cfg_str = """## Section description
+[Section]
+# Argument description/help
+arg1 = default_value
+# Second argument description
+arg2 = 1
+# Testing other filetypes/options
+output = stdout
+# This is a flag
+flag = 
+choices = 1
+"""
+
+    return cfg_str

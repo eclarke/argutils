@@ -1,4 +1,5 @@
 """Functions to export argument lists as config files or ArgumentParsers."""
+from __future__ import print_function
 from collections import OrderedDict
 import argparse
 import sys
@@ -8,6 +9,7 @@ except ImportError:
     import builtins
 import six
 import warnings
+
 
 
 from argutils import (
@@ -60,14 +62,34 @@ def to_config(cmd_name, argsdict, desc=None):
 
     return out
 
+def to_config_file(cmd_name, argsdict, filename, desc=None):
+    """Writes the config file to the specified location and exits.
 
-def to_argparser(cmd_name, argsdict, desc=None):
+    This is a convenience function for quick script-building. More complex 
+    programs should handle writing the config file better; this does not
+    check if it would overwrite an existing file, for instance.
+
+    :param cmd_name: the name of the command (used as section header)
+    :param argsdict: a dictionary of arguments, as provided by argutils.read.*
+    :param filename: where to write the config file
+    :param desc: a description of the command (optional, used if not otherwise 
+        given)
+    """
+    print("Writing default config file to {0}".format(filename))
+    default_config = to_config(cmd_name, argsdict, desc)
+    with open(filename, 'w') as conf_out:
+        conf_out.write(default_config)
+    raise SystemExit()
+
+
+def to_argparser(cmd_name, argsdict, desc=None, config=None):
     """Create an ArgumentParser from the given dictionary of arguments.
 
     :param cmd_name: name of the command
     :param argsdict: a dictionary of arguments, as provided by argutils.read.*
     :param desc: (optional) a description of the command, if one is not provided
     by argsdict.
+    :param config: a ConfigParser object populated with defaults
     :returns: An ArgumentParser with the specified options and args
     """
     # If there's a metadata section, get the description from there, otherwise
@@ -90,12 +112,9 @@ def _add_argument(argname, argvals, parser):
     """Adds an argument to the parser from a given set of argument values.
 
     :param argname: the name of the argument
-    :param argvals: the options for the argument. Currently implemented:
-        - argtype: one of 'arg', 'opt', or 'flag' 
-            (mandatory, optional, and takes no value, respectively)
-        - action: passed directly to add_argument (unless argtype == flag)
-        - prefix: the prefix used to call the option. If opttype == 
-
+    :param argvals: the options for the argument
+    :param parser: the ArgumentParser to add the argument to
+    :returns: the ArgumentParser passed in
     """
     action = argvals.get('action', 'store')
     prefix = argvals.get('prefix', '--')
@@ -115,7 +134,7 @@ def _add_argument(argname, argvals, parser):
     elif default == 'stdout':
         default = sys.stdout
     else:
-        default = False
+        default = default if default else None
 
     # What kind of values can the argument take? We generally just evaluate
     # the type provided as a string, except for FileTypes which we handle 

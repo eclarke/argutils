@@ -3,26 +3,16 @@ import shlex
 import sys
 from collections import OrderedDict
 import pytest
+import argutils
 from argutils import (read, export, FILE_W, FILE_R)
 
-def test_to_config(argsdict):
+def test_to_config(argsdict, argsdict_cfg_str):
     """
     Comments should appear above the option, and the excluded options should 
     not appear.
     """
     cfg_string = export.to_config(cmd_name='Section', argsdict=argsdict)
-    assert cfg_string == """## Section description
-[Section]
-# Argument description/help
-arg1 = default_value
-# Second argument description
-arg2 = 1
-# Testing other filetypes/options
-output = stdout
-# This is a flag
-flag = 
-choices = 1
-"""
+    assert cfg_string == argsdict_cfg_str
 
 def test_to_config_no_meta():
     """If no metadata section included, use the passed description."""
@@ -120,3 +110,33 @@ def test_unordered_warning(argsdict):
     unordered_args = dict(argsdict)
     with pytest.raises(ValueError):
         export.to_config(cmd_name='Section', argsdict=unordered_args)
+
+def test_set_parser_defaults(argsdict, tmpdir):
+    # Build a config parser
+    import ConfigParser
+    config = ConfigParser.SafeConfigParser()
+    cfg_file = tmpdir.join("test.cfg")
+    cfg_file.write(export.to_config('test', argsdict))
+    config.read(str(cfg_file))
+
+    # Modify config from the spec defaults
+    config.set("test", "arg2", "3")
+
+    # Build argparser
+    parser = export.to_argparser('test', argsdict)
+    parser = argutils.set_parser_defaults(parser, config)
+    args = parser.parse_args(["test"])
+    # Should reflect the modified default
+    assert args.arg2 == 3
+
+    # Should warn since it can't find the section
+    parser = export.to_argparser('test2', argsdict)
+    with pytest.warns(UserWarning):
+        argutils.set_parser_defaults(parser, config)
+
+def test_to_config_file(argsdict, tmpdir, argsdict_cfg_str):
+    cfg_out = tmpdir.join("out.cfg")
+    with pytest.raises(SystemExit):
+        cfg_str = export.to_config_file("Section", argsdict, str(cfg_out))
+    assert cfg_out.read() == argsdict_cfg_str
+

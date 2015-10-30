@@ -1,10 +1,29 @@
 import textwrap
+from ConfigParser import NoSectionError
+from warnings import warn
 
 META_KEY = "__meta__"
 DESC_KEY = "__desc__"
 EXCLUDE_FLAG = "__exclude__"
 FILE_W = "File-w"
 FILE_R = "File-r"
+
+def set_parser_defaults(parser, config):
+    """Sets the defaults for an ArgumentParser from a ConfigParser object.
+
+    :param parser: the ArgumentParser to set
+    :param config: the ConfigParser to read the defaults from. Should have a 
+    section matching the ArgumentParser's `prog` field.
+    :returns: the updated ArgumentParser
+    """
+
+    try:
+        defaults = dict(config.items(parser.prog))
+        parser.set_defaults(**defaults)
+        return parser
+    except NoSectionError:
+        warn("Section [{0}] not found in config file".format(parser.prog))
+        return parser
 
 def format_comment(text, width=72, quote="# "):
     """Line-wraps and pads text to write as a comment.
