@@ -1,4 +1,7 @@
-import ConfigParser
+try:
+    import ConfigParser
+except ImportError:
+    import configparser as ConfigParser
 import argutils
 from argutils import (read, export)
 

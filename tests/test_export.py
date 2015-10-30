@@ -5,6 +5,10 @@ from collections import OrderedDict
 import pytest
 import argutils
 from argutils import (read, export, FILE_W, FILE_R)
+try:
+    import ConfigParser
+except ImportError:
+    import configparser as ConfigParser
 
 def test_to_config(argsdict, argsdict_cfg_str):
     """
@@ -113,7 +117,6 @@ def test_unordered_warning(argsdict):
 
 def test_set_parser_defaults(argsdict, tmpdir):
     # Build a config parser
-    import ConfigParser
     config = ConfigParser.SafeConfigParser()
     cfg_file = tmpdir.join("test.cfg")
     cfg_file.write(export.to_config('test', argsdict))

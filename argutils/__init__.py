@@ -1,5 +1,8 @@
 import textwrap
-from ConfigParser import NoSectionError
+try:
+    from ConfigParser import NoSectionError
+except:
+    from configparser import NoSectionError
 from warnings import warn
 
 META_KEY = "__meta__"
