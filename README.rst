@@ -1,10 +1,14 @@
-.. argutils documentation master file, created by
-   sphinx-quickstart on Mon Oct 26 20:54:34 2015.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 argutils - functions for creating matched config files and argument parsers
 ===========================================================================
+
+.. image:: https://travis-ci.org/eclarke/argutils.svg?branch=v0.2.0
+  :target: https://travis-ci.org/eclarke/argutils
+.. image:: https://coveralls.io/repos/eclarke/argutils/badge.svg?branch=v0.2.0&service=github
+  :target: https://coveralls.io/github/eclarke/argutils?branch=master
+.. image:: https://readthedocs.org/projects/argutils/badge/?version=latest
+  :target: http://argutils.readthedocs.org/en/latest/?badge=latest
+  :alt: Documentation Status
+
 
 `argutils` provides a set of functions for quickly building command-line programs with matching config files. In particular, instead of separately building an ArgumentParser and ConfigParser, `argutils` lets the user build an interface from a JSON or YAML file, and then uses that to build both an argument parser and matching config file.
 
@@ -12,12 +16,69 @@ Here's a working example. We have a toy program that takes three arguments: a me
 
 In `example_spec.yml`:
 
-.. literalinclude:: example_spec.yml
-  :language: YAML
+.. code-block:: YAML
+
+  __meta__:
+    __desc__: > 
+      A program that prints a message some number of times to an output
+      file
+  message:
+    __desc__: the message to print
+    default: "Hello world!"
+  times:
+    __desc__: how many times to print the message
+    default: 3
+    type: int
+  output:
+    __desc__: where to write the file
+    __exclude__: True
+    default: stdout
+    type: File-w
+  init:
+    __desc__: write a config file with default values
+    __exclude__: True
+    argtype: flag
 
 In `example.py`:
 
-.. literalinclude:: example.py
+.. code-block:: Python
+
+  try:
+      import ConfigParser
+  except ImportError:
+      import configparser as ConfigParser
+  import argutils
+  from argutils import (read, export)
+
+  SPEC_FILE = 'example_spec.yml'
+  CONF_FILE = 'example.cfg'
+
+  def main():
+      # Used in the config file and argument parser's help
+      prog_name = 'example.py'
+
+      config = ConfigParser.SafeConfigParser()
+
+      # Read the spec and build a parser from it
+      argsdict = read.from_yaml(open(SPEC_FILE).read())
+      parser = export.to_argparser(prog_name, argsdict)
+
+      # If the config file exists and we can read it, use it to set the 
+      # defaults
+      if config.read(CONF_FILE):
+          parser = argutils.set_parser_defaults(parser, config)
+
+      args = parser.parse_args()
+
+      if args.init:
+          export.to_config_file(prog_name, argsdict, CONF_FILE)
+
+      for _ in range(args.times):
+          args.output.write(args.message + '\n')
+
+
+  if __name__ == '__main__':
+      main()
 
 Let's see what we've got:
 
@@ -63,20 +124,3 @@ Let's test it:
   Hello world!
 
 We can specify the arguments either with command-line flags or by modifying the values in the config file. Values specified on the command line take precedence, followed by the config file values, and resorting to the spec file defaults if nothing else is given.
-
-Release |release|
-
-Contents:
-
-.. toctree::
-   :maxdepth: 1
-
-   argutils
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
