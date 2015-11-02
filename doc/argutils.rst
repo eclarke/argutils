@@ -16,41 +16,41 @@ Here is an example spec file in YAML:
 
 .. code-block:: YAML
 
-    __meta__:
-      __desc__: Section description
+    __meta:
+      __desc: Section description
     arg1:
       default: default_value
-      __desc__: Argument description/help
+      __desc: Argument description/help
     arg2:
       default: 1
       type: int  
-      __desc__: Second argument description
+      __desc: Second argument description
     hidden_arg:
       default: 1
-      __exclude__: True 
+      __exclude: True 
       type: int
-      __desc__: This arg does not appear in the config file
+      __desc: This arg does not appear in the config file
     output:
       default: stdout
-      __desc__: Where to write the output
+      __desc: Where to write the output
       type: File-w
       argtype: arg
     verbose:
       argtype: flag
-      __desc__: This is a flag
-      __exclude__: True
+      __desc: This is a flag
+      __exclude: True
     choice_arg:
       default: 1
       choices: "1, 2, 3"
       type: int
 
 The fields in this file have the following meanings:
-    - `__meta__`: A metadata section that holds the program description
-    - `__desc__`: A field that provides descriptions or help text
+    - `__meta`: A metadata section that holds the program description
+    - `__desc`: A field that provides descriptions or help text
     - `argtype`: One of 'arg', 'opt', or 'flag', denoting required positional arguments, non-mandatory options, and flags (that take no value), respectively. Default: 'arg'
     - `default`: The default value for this argument (optional). If 'stdin' or 'stdout', the function converts this to  to `sys.stdin` or `sys.stdout`, respectively. 
     - `type`: A base type for the default (should be one of the Python builtin types, or `File-w` or `File-r` for writeable or readable file handles, respectively). Default: 'str'
-    - `__exclude__`: A flag (the value following doesn't matter) that denotes that this argument should be excluded from the config file
+    - `__exclude`: A flag (the value following doesn't matter) that denotes that this argument should be excluded from the config file
     - `nargs`: Either an integer giving the number of arguments, or one of ['\*', '+', '?']. If not recognized, it is ignored. Default: None
     - `choices`: a comma-separated list of allowed values for the function. Each item will be coerced to the given `type`; an error is raised if this fails.
 
@@ -100,7 +100,7 @@ Now we can take a look at our config file:
   output = stdout
   choice_arg = 1
 
-Notice that the arguments that have the `__exclude__` flag are omitted from the config file.
+Notice that the arguments that have the `__exclude` flag are omitted from the config file.
 
 
 

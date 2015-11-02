@@ -5,9 +5,9 @@ except:
     from configparser import NoSectionError
 from warnings import warn
 
-META_KEY = "__meta__"
-DESC_KEY = "__desc__"
-EXCLUDE_FLAG = "__exclude__"
+META_KEY = "__meta"
+DESC_KEY = "__desc"
+EXCLUDE_FLAG = "__exclude"
 FILE_W = "File-w"
 FILE_R = "File-r"
 

@@ -1,20 +1,20 @@
-__meta__:
-  __desc__: > 
+__meta:
+  __desc: > 
     A program that prints a message some number of times to an output
     file
 message:
-  __desc__: the message to print
+  __desc: the message to print
   default: "Hello world!"
 times:
-  __desc__: how many times to print the message
+  __desc: how many times to print the message
   default: 3
   type: int
 output:
-  __desc__: where to write the file
-  __exclude__: True
+  __desc: where to write the file
+  __exclude: True
   default: stdout
   type: File-w
 init:
-  __desc__: write a config file with default values
-  __exclude__: True
+  __desc: write a config file with default values
+  __exclude: True
   argtype: flag

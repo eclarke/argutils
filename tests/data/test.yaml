@@ -1,25 +1,25 @@
-__meta__:
-  __desc__: Section description
+__meta:
+  __desc: Section description
 arg1:
   default: default_value
-  __desc__: Argument description/help
+  __desc: Argument description/help
 arg2:
   default: 1
   type: int  
-  __desc__: Second argument description
+  __desc: Second argument description
 hidden:
   default: 1
-  __exclude__: True 
+  __exclude: True 
   type: int
-  __desc__: This arg does not appear in the config file
+  __desc: This arg does not appear in the config file
 output:
   default: stdout
-  __desc__: Testing other filetypes/options
+  __desc: Testing other filetypes/options
   type: File-w
   argtype: arg
 flag:
   argtype: flag
-  __desc__: This is a flag
+  __desc: This is a flag
 choices:
   default: 1
   choices: "1, 2, 3"
