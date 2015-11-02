@@ -1,31 +1,31 @@
 {
-  "__meta": {
-    "__desc": "Section description"
+  "_meta": {
+    "help": "Section description"
   },
   "arg1": {
     "default": "default_value",
-    "__desc": "Argument description/help"
+    "help": "Argument description/help"
   },
   "arg2": {
     "default": 1,
     "type": "int",
-    "__desc": "Second argument description"
+    "help": "Second argument description"
   },
   "hidden": {
     "default": 1,
-    "__exclude": true,
+    "_exclude": true,
     "type": "int",
-    "__desc": "This arg does not appear in the config file"
+    "help": "This arg does not appear in the config file"
   },
   "output": {
     "default": "stdout",
-    "__desc": "Testing other filetypes/options",
+    "help": "Testing other filetypes/options",
     "type": "File-w",
     "argtype": "arg"
   },
   "flag": {
     "argtype": "flag",
-    "__desc": "This is a flag"
+    "help": "This is a flag"
   },
   "choices": {
     "default": 1,

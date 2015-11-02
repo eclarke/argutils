@@ -49,7 +49,7 @@ We can see that all the arguments we specified in the YAML file are here. Let's 
   # how many times to print the message
   times = 3
 
-Note that two arguments don't show up here: `output` and `init`. These were excluded using the `__exclude` flag in the YAML file. This is useful for arguments that shouldn't be set using a config file, including one-time arguments.
+Note that two arguments don't show up here: `output` and `init`. These were excluded using the `_exclude` flag in the YAML file. This is useful for arguments that shouldn't be set using a config file, including one-time arguments.
 
 Let's test it:
 

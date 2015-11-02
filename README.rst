@@ -29,25 +29,25 @@ In `example_spec.yml`:
 
 .. code-block:: YAML
 
-  __meta:
-    __desc: > 
+  _meta:
+    help: > 
       A program that prints a message some number of times to an output
       file
   message:
-    __desc: the message to print
+    help: the message to print
     default: "Hello world!"
   times:
-    __desc: how many times to print the message
+    help: how many times to print the message
     default: 3
     type: int
   output:
-    __desc: where to write the file
-    __exclude: True
+    help: where to write the file
+    _exclude: True
     default: stdout
     type: File-w
   init:
-    __desc: write a config file with default values
-    __exclude: True
+    help: write a config file with default values
+    _exclude: True
     argtype: flag
 
 In `example.py`:
@@ -121,7 +121,7 @@ We can see that all the arguments we specified in the YAML file are here. Let's 
   # how many times to print the message
   times = 3
 
-Note that two arguments don't show up here: `output` and `init`. These were excluded using the `__exclude` flag in the YAML file. This is useful for arguments that shouldn't be set using a config file, including one-time arguments.
+Note that two arguments don't show up here: `output` and `init`. These were excluded using the `_exclude` flag in the YAML file. This is useful for arguments that shouldn't be set using a config file, including one-time arguments.
 
 Let's test it:
 
