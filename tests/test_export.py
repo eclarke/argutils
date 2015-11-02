@@ -31,7 +31,7 @@ def test_to_argparser(argsdict):
     """Valid argdict should behave as expected."""
     parser = export.to_argparser(cmd_name='Command', argsdict=argsdict)
     # Valid, expected input
-    validargs = "--arg1 someval --arg2 5 --hidden 6 --flag --choices 2 test_out"
+    validargs = "--arg1 someval --arg2 5 --hidden 6 --flag --choices 2 /dev/null"
     args = parser.parse_args(shlex.split(validargs))
     assert parser.prog == "Command"
     assert args.arg1 == "someval"
@@ -39,7 +39,7 @@ def test_to_argparser(argsdict):
     assert args.hidden == 6
     assert args.flag
     assert args.choices == 2
-    assert args.output.name == "test_out"
+    assert args.output.name == "/dev/null"
 
 def test_to_argparser_bad_input(argsdict):
     parser = export.to_argparser(cmd_name='Command', argsdict=argsdict)

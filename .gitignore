@@ -5,5 +5,6 @@ argutils.egg-info
 *.pyc
 \~.*
 htmlcov
-build
-dist
+build/*
+dist/*
+.coverage
