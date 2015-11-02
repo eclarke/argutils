@@ -4,3 +4,6 @@ argutils.egg-info
 .DS_Store
 *.pyc
 \~.*
+htmlcov
+build
+dist
