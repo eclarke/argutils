@@ -9,7 +9,7 @@ python:
 # command to install dependencies
 install: "pip install -r requirements.txt ."
 before_script:
-  - pip install python-coveralls pytest-cov
+  - pip install python-coveralls "pytest-cov<2.6"
 # command to run tests
 script: cd tests; py.test --cov=argutils
 after_success:
